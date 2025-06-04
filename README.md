@@ -5,6 +5,7 @@ Run `npm install` and then `npm start` to launch the server. The web interface w
 Run `npm test` to execute the backend unit tests.
 
 
+
 General Application Description:
 Develop an intuitive and efficient web application for traffic enforcement officers, enabling rapid and accurate completion of traffic violation tickets by scanning QR codes present on driver's licenses and vehicle license plates. Supplementary information (location, type of violation, observations) will be collected through a conversational interface, minimizing manual input and optimizing the officer's time in the field.
 

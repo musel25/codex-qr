@@ -7,6 +7,7 @@ const steps = [
 let driverScanner, plateScanner;
 let currentSummary = null;
 
+
 function showStep(index) {
   steps.forEach((s, i) => s.classList.toggle('active', i === index));
 }
@@ -57,6 +58,7 @@ document.getElementById('vehicle-next').onclick = () => showStep(2);
 
 document.getElementById('review').onclick = () => {
   currentSummary = {
+
     driver: {
       name: document.getElementById('driver-name').value,
       number: document.getElementById('driver-number').value,
@@ -92,6 +94,7 @@ document.getElementById('submit').onclick = async () => {
   } catch (err) {
     alert('Error submitting ticket: ' + err.message);
   }
+
   showStep(0);
 };
 
