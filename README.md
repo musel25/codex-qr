@@ -1,4 +1,7 @@
-Project Title: Agile Traffic Violation Ticket Management System (ATVTMS)
+# Agile Traffic Violation Ticket Management System (ATVTMS)
+
+This repository contains a prototype web interface for scanning QR codes on driver licenses and license plates. Open `atvtms/index.html` in a browser to try the demo.
+
 
 General Application Description:
 Develop an intuitive and efficient web application for traffic enforcement officers, enabling rapid and accurate completion of traffic violation tickets by scanning QR codes present on driver's licenses and vehicle license plates. Supplementary information (location, type of violation, observations) will be collected through a conversational interface, minimizing manual input and optimizing the officer's time in the field.

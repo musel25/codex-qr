@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATVTMS Prototype</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Agile Traffic Violation Ticket</h1>
+        <div id="step-1" class="step active">
+            <h2>Step 1: Scan Driver License</h2>
+            <button id="start-driver-scan">Start Scan</button>
+            <div id="driver-reader" class="reader"></div>
+            <form id="driver-form" class="hidden">
+                <label>Full Name: <input type="text" id="driver-name"></label>
+                <label>License No.: <input type="text" id="driver-number"></label>
+                <label>License Type: <input type="text" id="driver-type"></label>
+                <label>Issue Date: <input type="date" id="issue-date"></label>
+                <label>Expiration: <input type="date" id="exp-date"></label>
+                <button type="button" id="driver-next">Next</button>
+            </form>
+        </div>
+        <div id="step-2" class="step">
+            <h2>Step 2: Scan License Plate</h2>
+            <button id="start-plate-scan">Start Scan</button>
+            <div id="plate-reader" class="reader"></div>
+            <form id="vehicle-form" class="hidden">
+                <label>Plate: <input type="text" id="plate-number"></label>
+                <label>Make: <input type="text" id="vehicle-make"></label>
+                <label>Model: <input type="text" id="vehicle-model"></label>
+                <label>Year: <input type="number" id="vehicle-year"></label>
+                <button type="button" id="vehicle-next">Next</button>
+            </form>
+        </div>
+        <div id="step-3" class="step">
+            <h2>Step 3: Details</h2>
+            <form id="details-form">
+                <label>Violation Type:
+                    <select id="violation-type">
+                        <option value="speeding">Speeding</option>
+                        <option value="illegal-parking">Illegal Parking</option>
+                        <option value="phone-use">Using Mobile Phone</option>
+                        <option value="failure-yield">Failure to Yield</option>
+                    </select>
+                </label>
+                <label>Location: <input type="text" id="location"></label>
+                <label>Observations:<br><textarea id="observations"></textarea></label>
+                <button type="button" id="review">Review</button>
+            </form>
+        </div>
+        <div id="step-4" class="step">
+            <h2>Review</h2>
+            <pre id="summary"></pre>
+            <button id="submit">Submit Ticket</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
