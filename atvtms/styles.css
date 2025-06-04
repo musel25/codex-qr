@@ -1,0 +1,8 @@
+body { font-family: Arial, sans-serif; margin: 20px; }
+.step { display: none; }
+.step.active { display: block; }
+.reader { width: 300px; height: 200px; margin-top: 10px; }
+.hidden { display: none; }
+label { display: block; margin-bottom: 10px; }
+button { margin-top: 10px; }
+.error { color: red; }
