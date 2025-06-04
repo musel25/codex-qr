@@ -5,6 +5,8 @@ const steps = [
   document.getElementById('step-4')
 ];
 let driverScanner, plateScanner;
+let currentSummary = null;
+
 
 function showStep(index) {
   steps.forEach((s, i) => s.classList.toggle('active', i === index));
@@ -55,7 +57,8 @@ document.getElementById('start-plate-scan').onclick = () => {
 document.getElementById('vehicle-next').onclick = () => showStep(2);
 
 document.getElementById('review').onclick = () => {
-  const summary = {
+  currentSummary = {
+
     driver: {
       name: document.getElementById('driver-name').value,
       number: document.getElementById('driver-number').value,
@@ -74,12 +77,24 @@ document.getElementById('review').onclick = () => {
       time: new Date().toISOString()
     }
   };
-  document.getElementById('summary').textContent = JSON.stringify(summary, null, 2);
+  document.getElementById('summary').textContent = JSON.stringify(currentSummary, null, 2);
   showStep(3);
 };
 
-document.getElementById('submit').onclick = () => {
-  alert('Ticket submitted (demo)');
+document.getElementById('submit').onclick = async () => {
+  if (!currentSummary) return;
+  try {
+    const res = await fetch('/api/tickets', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(currentSummary)
+    });
+    const result = await res.json();
+    alert('Ticket submitted with ID ' + result.id);
+  } catch (err) {
+    alert('Error submitting ticket: ' + err.message);
+  }
+
   showStep(0);
 };
 

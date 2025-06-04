@@ -1,6 +1,9 @@
 # Agile Traffic Violation Ticket Management System (ATVTMS)
 
-This repository contains a prototype web interface for scanning QR codes on driver licenses and license plates. Open `atvtms/index.html` in a browser to try the demo.
+This repository now includes a simple full‑stack prototype.
+Run `npm install` and then `npm start` to launch the server. The web interface will be available at `http://localhost:3000/`.
+Run `npm test` to execute the backend unit tests.
+
 
 
 General Application Description:
