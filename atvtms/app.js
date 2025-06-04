@@ -7,9 +7,62 @@ const steps = [
 let driverScanner, plateScanner;
 let currentSummary = null;
 
+// load draft if any
+const saved = localStorage.getItem('draft-ticket');
+if (saved) {
+  try {
+    currentSummary = JSON.parse(saved);
+    if (currentSummary.driver) {
+      document.getElementById('driver-name').value = currentSummary.driver.name || '';
+      document.getElementById('driver-number').value = currentSummary.driver.number || '';
+      document.getElementById('driver-type').value = currentSummary.driver.type || '';
+    }
+    if (currentSummary.vehicle) {
+      document.getElementById('plate-number').value = currentSummary.vehicle.plate || '';
+      document.getElementById('vehicle-make').value = currentSummary.vehicle.make || '';
+      document.getElementById('vehicle-model').value = currentSummary.vehicle.model || '';
+      document.getElementById('vehicle-year').value = currentSummary.vehicle.year || '';
+    }
+    if (currentSummary.details) {
+      document.getElementById('violation-type').value = currentSummary.details.violation || 'speeding';
+      document.getElementById('location').value = currentSummary.details.location || '';
+      document.getElementById('observations').value = currentSummary.details.observations || '';
+    }
+  } catch {}
+}
 
-function showStep(index) {
-  steps.forEach((s, i) => s.classList.toggle('active', i === index));
+
+document.getElementById('vehicle-next').onclick = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(pos => {
+      const locInput = document.getElementById('location');
+      locInput.value = `${pos.coords.latitude},${pos.coords.longitude}`;
+    });
+  }
+  showStep(2);
+};
+
+let recognition;
+document.getElementById('record').onclick = () => {
+  if (!('webkitSpeechRecognition' in window)) {
+    alert('Speech recognition not supported');
+    return;
+  }
+  if (!recognition) {
+    recognition = new webkitSpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.onresult = e => {
+      const text = e.results[0][0].transcript;
+      const obs = document.getElementById('observations');
+      obs.value = obs.value + ' ' + text;
+    };
+  }
+  recognition.start();
+};
+    localStorage.removeItem('draft-ticket');
+    localStorage.setItem('draft-ticket', JSON.stringify(currentSummary));
+    alert('Saved offline. Error submitting ticket: ' + err.message);
 }
 
 function parseData(data) {

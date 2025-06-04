@@ -1,7 +1,8 @@
 # Agile Traffic Violation Ticket Management System (ATVTMS)
 
-This repository now includes a simple full‑stack prototype.
+This repository now includes a simple full‑stack prototype with a basic login flow.
 Run `npm install` and then `npm start` to launch the server. The web interface will be available at `http://localhost:3000/`.
+Open `atvtms/login.html` to log in as `officer`/`password` and begin creating tickets.
 Run `npm test` to execute the backend unit tests.
 
 

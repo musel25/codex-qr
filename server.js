@@ -22,6 +22,17 @@ if (!dbExists) {
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'atvtms')));
 
+// simple in-memory users for prototype
+const users = { officer: 'password' };
+
+app.post('/api/login', (req, res) => {
+  const { username, password } = req.body;
+  if (users[username] && users[username] === password) {
+    return res.json({ success: true });
+  }
+  res.status(401).json({ error: 'Invalid credentials' });
+});
+
 app.get('/api/tickets', (req, res) => {
   db.all('SELECT id, data, created_at FROM tickets ORDER BY created_at DESC', (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
